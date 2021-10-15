@@ -15,7 +15,6 @@ use App\Http\Controllers\SeriesController;
 */
 
 Route::get('/series', [SeriesController::class, 'index']);
-Route::get('/series/criar', [SeriesController::class, 'create']);
-
+Route::get('/series/criar', [SeriesController::class, 'create'])->name('criar_serie');
 Route::post('/series/criar', [SeriesController::class, 'store']);
 Route::delete('/series/remover/{id}', [SeriesController::class, 'destroy']);
