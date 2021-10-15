@@ -1,11 +1,6 @@
 <?php
 
-
-// if (getenv('APP_ENV') == 'Homologacao') {
-//   '127.0.0.1' = '10.11.132.78';
-// }else{
-//   '127.0.0.1' = '10.61.228.86';
-// }
+use Illuminate\Support\Str;
 
 return [
 
@@ -42,89 +37,35 @@ return [
 
         'sqlite' => [
             'driver' => 'sqlite',
+            'url' => env('DATABASE_URL'),
             'database' => env('DB_DATABASE', database_path('database.sqlite')),
             'prefix' => '',
+            'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
         ],
 
         'mysql' => [
             'driver' => 'mysql',
-            'host' => env('DB_HOST', 'sqest390'),
+            'url' => env('DATABASE_URL'),
+            'host' => env('DB_HOST', '127.0.0.1'),
             'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'jarvisdb'),
-            'username' => env('DB_USERNAME', 'jarvis'),
-            'password' => env('DB_PASSWORD', 'jarvis'),
+            'database' => env('DB_DATABASE', 'forge'),
+            'username' => env('DB_USERNAME', 'forge'),
+            'password' => env('DB_PASSWORD', ''),
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
             'prefix' => '',
+            'prefix_indexes' => true,
             'strict' => true,
             'engine' => null,
+            'options' => extension_loaded('pdo_mysql') ? array_filter([
+                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+            ]) : [],
         ],
-
-        'mysql2' => [
-          'driver' => 'mysql',
-          'host' => env('DB_HOST_SECOND', 'sqest390'),
-          'port' => env('DB_PORT_SECOND', '3306'),
-          'database' => env('DB_DATABASE_SECOND', 'licitacoes'),
-          'username' => env('DB_USERNAME_SECOND', 'jarvis'),
-          'password' => env('DB_PASSWORD_SECOND', 'jarvis'),
-          'unix_socket' => env('DB_SOCKET_SECOND', ''),
-          'charset' => 'utf8mb4',
-          'collation' => 'utf8mb4_unicode_ci',
-          'prefix' => '',
-          'strict' => true,
-          'engine' => null,
-        ],
-
-        'mysql3' => [
-          'driver' => 'mysql',
-          'host' => env('DB_HOST_THIRD', 'sqest390'),
-          'port' => env('DB_PORT_THIRD', '3306'),
-          'database' => env('DB_DATABASE_THIRD', 'forecastdb'),
-          'username' => env('DB_USERNAME_THIRD', 'jarvis'),
-          'password' => env('DB_PASSWORD_THIRD', 'jarvis'),
-          'unix_socket' => env('DB_SOCKET_THIRD', ''),
-          'charset' => 'utf8mb4',
-          'collation' => 'utf8mb4_unicode_ci',
-          'prefix' => '',
-          'strict' => true,
-          'engine' => null,
-        ],
-
-        'mysql5' => [
-          'driver' => 'mysql',
-          'host' => env('DB_HOST_FIFTH', 'sqest390'),
-          'port' => env('DB_PORT_FIFTH', '3306'),
-          'database' => env('DB_DATABASE_FIFTH', 'projtecnicodb'),
-          'username' => env('DB_USERNAME_FIFTH', 'jarvis'),
-          'password' => env('DB_PASSWORD_FIFTH', 'jarvis'),
-          'unix_socket' => env('DB_SOCKET_FIFTH', ''),
-          'charset' => 'utf8mb4',
-          'collation' => 'utf8mb4_unicode_ci',
-          'prefix' => '',
-          'strict' => true,
-          'engine' => null,
-        ],
-
-
-        'mysql6' => [
-            'driver' => 'mysql',
-            'host' => env('DB_HOST_SIXTH', 'sqest390'),
-            'port' => env('DB_PORT_SIXTH', '3306'),
-            'database' => env('DB_DATABASE_SIXTH', 'iara_leitor'),
-            'username' => env('DB_USERNAME_SIXTH', 'jarvis'),
-            'password' => env('DB_PASSWORD_SIXTH', 'jarvis'),
-            'unix_socket' => env('DB_SOCKET_SIXTH', ''),
-            'charset' => 'utf8mb4',
-            'collation' => 'utf8mb4_unicode_ci',
-            'prefix' => '',
-            'strict' => true,
-            'engine' => null,
-          ],
-
 
         'pgsql' => [
             'driver' => 'pgsql',
+            'url' => env('DATABASE_URL'),
             'host' => env('DB_HOST', '127.0.0.1'),
             'port' => env('DB_PORT', '5432'),
             'database' => env('DB_DATABASE', 'forge'),
@@ -132,32 +73,23 @@ return [
             'password' => env('DB_PASSWORD', ''),
             'charset' => 'utf8',
             'prefix' => '',
+            'prefix_indexes' => true,
             'schema' => 'public',
             'sslmode' => 'prefer',
         ],
 
         'sqlsrv' => [
             'driver' => 'sqlsrv',
-            'host' => env('DB_HOST_FOURTH', '10.58.44.181'),
-            'port' => env('DB_PORT_FOURTH', '1440'),
-            'database' => env('DB_DATABASE_FOURTH', 'PREVENDAS_B2B'),
-            'username' => env('DB_USERNAME_FOURTH', 'SBBM6002'),
-            'password' => env('DB_PASSWORD_FOURTH', '02@BMB6%S'),
+            'url' => env('DATABASE_URL'),
+            'host' => env('DB_HOST', 'localhost'),
+            'port' => env('DB_PORT', '1433'),
+            'database' => env('DB_DATABASE', 'forge'),
+            'username' => env('DB_USERNAME', 'forge'),
+            'password' => env('DB_PASSWORD', ''),
             'charset' => 'utf8',
             'prefix' => '',
+            'prefix_indexes' => true,
         ],
-       
-
-        // 'mssql' => [
-        //     'driver' => 'sqlsrv',
-        //     'host' => env('DB_HOST', '10.58.44.181'),
-        //     'port' => env('DB_PORT', '1440'),
-        //     'database' => env('DB_DATABASE', 'forge'),
-        //     'username' => env('DB_USERNAME', 'forge'),
-        //     'password' => env('DB_PASSWORD', ''),
-        //     'charset' => 'utf8',
-        //     'prefix' => '',
-        // ],
 
     ],
 
@@ -180,20 +112,34 @@ return [
     |--------------------------------------------------------------------------
     |
     | Redis is an open source, fast, and advanced key-value store that also
-    | provides a richer set of commands than a typical key-value systems
+    | provides a richer body of commands than a typical key-value system
     | such as APC or Memcached. Laravel makes it easy to dig right in.
     |
     */
 
     'redis' => [
 
-        'client' => 'predis',
+        'client' => env('REDIS_CLIENT', 'phpredis'),
+
+        'options' => [
+            'cluster' => env('REDIS_CLUSTER', 'redis'),
+            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_database_'),
+        ],
 
         'default' => [
+            'url' => env('REDIS_URL'),
             'host' => env('REDIS_HOST', '127.0.0.1'),
             'password' => env('REDIS_PASSWORD', null),
-            'port' => env('REDIS_PORT', 6379),
-            'database' => 0,
+            'port' => env('REDIS_PORT', '6379'),
+            'database' => env('REDIS_DB', '0'),
+        ],
+
+        'cache' => [
+            'url' => env('REDIS_URL'),
+            'host' => env('REDIS_HOST', '127.0.0.1'),
+            'password' => env('REDIS_PASSWORD', null),
+            'port' => env('REDIS_PORT', '6379'),
+            'database' => env('REDIS_CACHE_DB', '1'),
         ],
 
     ],

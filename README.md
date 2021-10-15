@@ -1,39 +1,3 @@
-<h1>Para executar apó o clone </h1>
-<p>1- composer update </p>
-<p>2- php artisan serve </p>
-
-////////////////Métodos HTTP////////////////////////
-
-//POST Envia nova requisação
-Route::post('/requisicoes', function(Request $request) {
-    return 'Hello POST';
-});
-
-//DELETE Apagar um recurso ex. produto da lista
-Route::delete('/requisicoes', function(Request $request) {
-    return 'Hello DELETE';
-});
-
-//PUT Salvar alguma coisa/ editar
-Route::put('/requisicoes', function(Request $request) {
-    return 'Hello PUT';
-});
-
-//PATCH Salvar alguma coisa/ editar
-Route::patch('/requisicoes', function(Request $request) {
-    return 'Hello PATCH';
-});
-
-//OPTIONS 
-Route::options('/requisicoes', function(Request $request) {
-    return 'Hello OPTIONS';
-});
-
-//GET - Solicita 
-Route::get('/requisicoes', function(Request $request) {
-    return 'Hello GET';
-});
-
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
